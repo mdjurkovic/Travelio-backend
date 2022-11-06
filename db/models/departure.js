@@ -1,6 +1,6 @@
 import {model, Schema} from "mongoose";
 
-const DepartureSchema = new Schema(
+export const DepartureSchema = new Schema(
     {
         departure_date: {type: Date, required: true},
         return_date: {type: Date, required: true},

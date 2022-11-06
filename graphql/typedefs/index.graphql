@@ -3,6 +3,10 @@ scalar Date
 
 type Query {
 
+    # Continent
+    continents(active:Boolean): [Continent]!
+    continent(id:ID!): Continent
+
     # Country
     countries: [Country]!
     country(id: ID!): Country
@@ -23,16 +27,21 @@ type Query {
     excursions: [Excursion]!
     excursion(id: ID!): Excursion
 
+    # Passenger
+    passengers: [Passenger]!
+    passenger(id: ID!): Passenger
+
     # Tour
     tours: [Tour]!
     tour(id: ID!): Tour
 
-    # Departure
-    departures: [Departure]
-    departure(departure_date: Date!): Departure
 }
 
 type Mutation {
+
+    # Continents
+    createContinent(continent: ContinentCreateInput!): Continent!
+    updateContinent(id: ID!, continent: ContinentUpdateInput!): Continent!
 
     # Countries
     createCountry(country: CountryCreateInput!): Country!
@@ -55,11 +64,11 @@ type Mutation {
     createGuider(guider: GuiderCreateInput!): Guider!
     updateGuider(id: ID!, guider: GuiderUpdateInput!): Guider!
 
+    # Passengers
+    createPassenger(passenger: PassengerCreateInput!): Passenger!
+    updatePassenger(id: ID!, passenger: PassengerUpdateInput!): Passenger!
+
     # Tours
     createTour(tour: TourCreateInput!): Tour!
     updateTour(id: ID!, tour: TourUpdateInput!): Tour!
-
-    # Departure
-    createDeparture(departure: DepartureCreateInput!): Departure!
-    updateDeparture(id: ID!, departure: DepartureUpdateInput!): Departure!
 }

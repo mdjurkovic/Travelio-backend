@@ -1,19 +1,21 @@
 # Types
 type Country implements Timestamps {
-  id: ID!
-  name: String!
-  destinations: [Destination]
+    id: ID!
+    name: String!
+    active: Boolean!
+    continent: Continent!
+    destinations: [Destination]
 
-  # Interface required
-  createdAt: Date!
-  updatedAt: Date!
+    # Interface required
+    createdAt: Date!
+    updatedAt: Date!
 }
 
 # Inputs
 input CountryCreateInput {
-  name: String!
+    name: String!
 }
 
 input CountryUpdateInput {
-  name: String
+    name: String
 }

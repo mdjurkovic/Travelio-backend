@@ -1,5 +1,5 @@
 import DataLoader from "dataloader";
-import {Country, Departure, Destination, DestinationType, Excursion, Guider, Tour} from "../db/models";
+import {Continent, Country, Destination, DestinationType, Excursion, Guider, Passenger, Tour} from "../db/models";
 
 const createLoader = (Model) => {
     const loader = new DataLoader(async (keys) => {
@@ -23,13 +23,14 @@ const createLoader = (Model) => {
 
 const context = async () => {
     const loaders = {
+        continent: createLoader(Continent),
         country: createLoader(Country),
         destination: createLoader(Destination),
         destinationType: createLoader(DestinationType),
         excursion: createLoader(Excursion),
         guider: createLoader(Guider),
+        passenger: createLoader(Passenger),
         tour: createLoader(Tour),
-        departure: createLoader(Departure)
     };
 
     return {loaders};

@@ -1,8 +1,8 @@
 import {connection} from "mongoose";
 import connectDB from "../";
 import {
+    Continent,
     Country,
-    Departure,
     Destination,
     DestinationBelongsType,
     DestinationType,
@@ -20,11 +20,21 @@ const seed = async () => {
 
     console.log("Database clean");
 
+    const continents = [
+        new Continent({name: "Africa"}),
+        new Continent({name: "Asia"}),
+        new Continent({name: "Europe"}),
+        new Continent({name: "South America"}),
+        new Continent({name: "Caribbean & Central America"}),
+        new Continent({name: "Australia", active: false}),
+    ];
+
+
     const countries = [
-        new Country({name: "Tanzania"}),
-        new Country({name: "Turkey"}),
-        new Country({name: "Pakistan"}),
-        new Country({name: "India"}),
+        new Country({name: "Tanzania", continent: continents[0]}),
+        new Country({name: "Turkey", continent: continents[2]}),
+        new Country({name: "Pakistan", continent: continents[1]}),
+        new Country({name: "India", continent: continents[1], active: false}),
     ];
 
     const destinationTypes = [
@@ -133,15 +143,6 @@ const seed = async () => {
         }),
     ];
 
-    const departures = [
-        new Departure({
-            departure_date: new Date("2022-09-12"),
-            return_date: new Date("2022-09-25"),
-            guider: guiders[0]._id,
-            tour: tours[0]._id
-        })
-    ]
-
     const guidesAts = [
         new GuidesAt({
             guider: guiders[0]._id,
@@ -158,6 +159,7 @@ const seed = async () => {
     ]
 
     const savings = [
+        ...continents.map((continent) => continent.save()),
         ...countries.map((country) => country.save()),
         ...destinations.map((destination) => destination.save()),
         ...destinationTypes.map((dt) => dt.save()),
@@ -165,7 +167,6 @@ const seed = async () => {
         ...excursions.map((excursion) => excursion.save()),
         ...guiders.map((guider) => guider.save()),
         ...tours.map((tour) => tour.save()),
-        ...departures.map((departure) => departure.save()),
         ...guidesAts.map((guidesAt) => guidesAt.save())
     ];
 

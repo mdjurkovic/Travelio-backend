@@ -11,7 +11,6 @@ const destinationFields = {
         },
         tours: async (destination, _, {loaders}) => {
             const tours = await Tour.find({destination: destination.id});
-            console.log(tours)
 
             return loaders.tour.many(tours.map(({id}) => id));
         },

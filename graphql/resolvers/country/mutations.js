@@ -18,7 +18,7 @@ const countryMutations = {
         );
 
         return loaders.country.one(id);
-    },
+    }
 };
 
 export default countryMutations;

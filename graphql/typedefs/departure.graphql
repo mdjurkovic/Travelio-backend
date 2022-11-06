@@ -12,10 +12,6 @@ type Departure implements Timestamps {
 }
 
 # Inputs
-input DepartureCreateInput {
-    departure_date: Date!
-    return_date: Date!
-}
 
 input DepartureUpdateInput {
     departure_date: Date
