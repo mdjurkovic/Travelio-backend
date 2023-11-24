@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose";
+import { model, Schema } from "mongoose";
 
-const DestinationTypeSchema = new Schema(
+export const DestinationTypeSchema = new Schema(
   {
     label: { type: String, required: true },
   },

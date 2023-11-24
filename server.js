@@ -1,22 +1,22 @@
-import {port} from "./config/environment";
+import { port, uri } from "./config/environment";
 import express from "express";
-import graphqlServer from "./graphql";
+import apolloServer from "./graphql";
 import connectDB from "./db";
 
 const app = express();
 
 try {
-    graphqlServer.start().then((r) => {
-        graphqlServer.applyMiddleware({
-            app,
-        });
-        console.log("Connecting to db");
-        connectDB().then(() => {
-            console.log("Connected to db");
-            app.listen(port);
-            console.log(`🚀  GraphQL server running at port: ${port}/graphql`);
-        });
+  apolloServer.start().then((r) => {
+    apolloServer.applyMiddleware({
+      app,
     });
+    console.log("Connecting to db");
+    connectDB().then(() => {
+      console.log("Connected to db");
+      app.listen(port);
+      console.log(`🚀  GraphQL server running at ${uri}:${port}/graphql`);
+    });
+  });
 } catch {
-    console.log("Not able to run GraphQL server");
+  console.log("Not able to run GraphQL server");
 }
