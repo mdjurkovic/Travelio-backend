@@ -1,19 +1,23 @@
 # Types
 type Guider implements Timestamps {
-  id: ID!
-  name: String!
-  tours: [Tour]
+    id: ID!
+    name: String
+    preferences: [DestinationType]
+    tours: [Tour]
 
-  # Interface required
-  createdAt: Date!
-  updatedAt: Date!
+    # Interface required
+    createdAt: Date!
+    updatedAt: Date!
 }
 
 # Inputs
 input GuiderCreateInput {
-  name: String!
+    name: String!
+    preferences: [DestinationTypeCreateInput]
 }
 
 input GuiderUpdateInput {
-  name: String
+    name: String
+    preferences: [DestinationTypeCreateInput]
 }
+

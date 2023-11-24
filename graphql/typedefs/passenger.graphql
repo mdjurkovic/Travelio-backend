@@ -1,0 +1,31 @@
+# Types
+type Passenger implements Timestamps {
+    id: ID!
+    name: String!
+    email: String!
+    phone: String!
+    jmbg: String!
+    passport: String!
+    tours: [Tour]
+
+    # Interface required
+    createdAt: Date!
+    updatedAt: Date!
+}
+
+# Inputs
+input PassengerCreateInput {
+    name: String!
+    email: String!
+    phone: String!
+    jmbg: String!
+    passport: String!
+}
+
+input PassengerUpdateInput {
+    name: String
+    email: String
+    phone: String
+    jmbg: String
+    passport: String
+}

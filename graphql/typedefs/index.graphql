@@ -9,6 +9,7 @@ type Query {
 
     # Country
     countries: [Country]!
+    countriesByContinent(continent: String!): [Country]!
     country(id: ID!): Country
 
     # Destination
@@ -44,8 +45,9 @@ type Mutation {
     updateContinent(id: ID!, continent: ContinentUpdateInput!): Continent!
 
     # Countries
-    createCountry(country: CountryCreateInput!): Country!
+    createCountry(name: String!): Country!
     updateCountry(id: ID!, country: CountryUpdateInput!): Country!
+    deleteCountry(id: ID!): Country
 
     # Destinations
     createDestination(destination: DestinationCreateInput!): Destination!
@@ -61,8 +63,9 @@ type Mutation {
     updateExcursion(id: ID!, excursion: ExcursionUpdateInput!): Excursion!
 
     # Guiders
-    createGuider(guider: GuiderCreateInput!): Guider!
+    createGuider(name: String!): Guider!
     updateGuider(id: ID!, guider: GuiderUpdateInput!): Guider!
+    deleteGuider(id: ID!): Guider
 
     # Passengers
     createPassenger(passenger: PassengerCreateInput!): Passenger!

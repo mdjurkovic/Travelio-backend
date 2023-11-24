@@ -18,3 +18,4 @@ input ContinentCreateInput {
 input ContinentUpdateInput {
     name: String
 }
+

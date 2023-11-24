@@ -2,6 +2,9 @@
 type Tour implements Timestamps {
     id: ID!
     name: String!
+    departureDate: Date
+    returnDate: Date
+    nights: Int
     destination: Destination
     guider: Guider
 
