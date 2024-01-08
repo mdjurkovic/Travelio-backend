@@ -8,19 +8,23 @@ const countryMutations = {
 
     return loaders.country.one(savedCountry._id);
   },
-  updateCountry: async (_, { id, country }, { loaders }) => {
+
+  updateCountry: async (_, { id, active }, { loaders }) => {
     await Country.findByIdAndUpdate(
       id,
       {
-        $set: { ...country },
+        active: active,
       },
       { new: true }
     );
 
     return loaders.country.one(id);
   },
-  deleteCountry: async (_, { id }) => {
-    return Country.findByIdAndRemove(id);
+
+  deleteCountry: async (_, { id }, { loaders }) => {
+    await Country.findByIdAndRemove(id);
+
+    return loaders.country.one(id);
   },
 };
 

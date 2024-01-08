@@ -2,6 +2,7 @@ import { Destination } from "../../../db/models";
 
 const destinationMutations = {
   createDestination: async (_, { destination }, { loaders }) => {
+    console.log(destination);
     const newDestination = new Destination(destination);
 
     const savedDestination = await newDestination.save();
@@ -16,6 +17,11 @@ const destinationMutations = {
       },
       { new: true }
     );
+
+    return loaders.destination.one(id);
+  },
+  deleteDestination: async (_, { id }, { loaders }) => {
+    await Destination.findByIdAndRemove(id);
 
     return loaders.destination.one(id);
   },

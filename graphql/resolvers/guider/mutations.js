@@ -12,7 +12,7 @@ const guiderMutations = {
     await Guider.findByIdAndUpdate(
       id,
       {
-        $set: { ...guider },
+        name: guider,
       },
       // get the new version of record after update
       // default returns old value
@@ -21,8 +21,10 @@ const guiderMutations = {
 
     return loaders.guider.one(id);
   },
-  deleteGuider: async (_, { id }) => {
-    return Guider.findByIdAndRemove(id);
+  deleteGuider: async (_, { id }, { loaders }) => {
+    await Guider.findByIdAndRemove(id);
+
+    return loaders.guider.one(id);
   },
 };
 

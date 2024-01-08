@@ -13,9 +13,10 @@ type Country implements Timestamps {
 
 # Inputs
 input CountryCreateInput {
-    name: String!
+    name: String
 }
 
 input CountryUpdateInput {
-    name: String
+    id: ID!
+    active: Boolean!
 }

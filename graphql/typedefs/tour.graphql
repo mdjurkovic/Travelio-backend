@@ -2,9 +2,14 @@
 type Tour implements Timestamps {
     id: ID!
     name: String!
-    departureDate: Date
-    returnDate: Date
+    description: String
+    price: Int!
+    departureDate: Date!
+    returnDate: Date!
     nights: Int
+    minPassengers: Int!
+    maxPassengers: Int!
+    image: String
     destination: Destination
     guider: Guider
 
@@ -16,8 +21,35 @@ type Tour implements Timestamps {
 # Inputs
 input TourCreateInput {
     name: String!
+    price: Int!
+    departureDate: Date!
+    returnDate: Date!
+    minPassengers: Int!
+    maxPassengers: Int!
+    image: Upload
+    destination: ID!
+    guider: ID
 }
 
 input TourUpdateInput {
     name: String
+}
+
+fragment TourFields on Tour {
+    id
+    name
+    price
+    returnDate
+    departureDate
+    minPassengers
+    maxPassengers
+    description
+    guider {
+        id
+        name
+    }
+    destination {
+        id
+        name
+    }
 }

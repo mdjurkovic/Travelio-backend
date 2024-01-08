@@ -7,6 +7,9 @@ const guiderFields = {
 
       return loaders.tour.many(tours.map(({ id }) => id));
     },
+    toursCount: async (guider, _) => {
+      return Tour.countDocuments({ guider: guider.id });
+    },
   },
 };
 

@@ -1,5 +1,5 @@
 import Mongoose from "mongoose";
-import { mongo } from "../config/environment";
+import { mongo } from "../config/environment/index.js";
 
 let isConnected;
 let db;

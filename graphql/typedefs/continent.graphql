@@ -3,7 +3,7 @@ type Continent implements Timestamps {
     id: ID!
     name: String!
     active: Boolean!
-    countries: [Country]
+    countries(active: Boolean): [Country]
 
     # Interface required
     createdAt: Date!

@@ -11,6 +11,7 @@ type DestinationType implements Timestamps {
 
 # Inputs
 input DestinationTypeCreateInput {
+    id: ID!
     label: String!
 }
 

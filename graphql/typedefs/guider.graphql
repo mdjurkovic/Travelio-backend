@@ -4,6 +4,7 @@ type Guider implements Timestamps {
     name: String
     preferences: [DestinationType]
     tours: [Tour]
+    toursCount: Int
 
     # Interface required
     createdAt: Date!
