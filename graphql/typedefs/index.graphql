@@ -1,5 +1,6 @@
 # Custom Scalars
 scalar Date
+scalar Upload
 
 type Query {
 
@@ -8,7 +9,7 @@ type Query {
     continent(id:ID!): Continent
 
     # Country
-    countries: [Country]!
+    countries(active: Boolean): [Country]!
     country(id: ID!): Country
 
     # Destination
@@ -32,7 +33,7 @@ type Query {
     passenger(id: ID!): Passenger
 
     # Tour
-    tours: [Tour]!
+    tours(destinationId: ID): [Tour]!
     tour(id: ID!): Tour
 
 }
@@ -44,12 +45,14 @@ type Mutation {
     updateContinent(id: ID!, continent: ContinentUpdateInput!): Continent!
 
     # Countries
-    createCountry(country: CountryCreateInput!): Country!
-    updateCountry(id: ID!, country: CountryUpdateInput!): Country!
+    createCountry(name: String!): Country!
+    updateCountry(id: ID!, active: Boolean!): Country!
+    deleteCountry(id: ID!): Country
 
     # Destinations
-    createDestination(destination: DestinationCreateInput!): Destination!
+    createDestination(destination: DestinationCreateInput): Destination!
     updateDestination(id: ID!, destination: DestinationUpdateInput!): Destination!
+    deleteDestination(id: ID!): Destination
     addDestinationTypeToDestination(id: ID!, destinationType: ID!): Destination!
 
     # DestinationTypes
@@ -61,8 +64,9 @@ type Mutation {
     updateExcursion(id: ID!, excursion: ExcursionUpdateInput!): Excursion!
 
     # Guiders
-    createGuider(guider: GuiderCreateInput!): Guider!
-    updateGuider(id: ID!, guider: GuiderUpdateInput!): Guider!
+    createGuider(name: String!): Guider!
+    updateGuider(id: ID!, guider: String!): Guider!
+    deleteGuider(id: ID!): Guider
 
     # Passengers
     createPassenger(passenger: PassengerCreateInput!): Passenger!
@@ -71,4 +75,6 @@ type Mutation {
     # Tours
     createTour(tour: TourCreateInput!): Tour!
     updateTour(id: ID!, tour: TourUpdateInput!): Tour!
+    deleteTour(id: ID!): Tour
+
 }

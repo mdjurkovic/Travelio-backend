@@ -2,10 +2,11 @@
 type Destination implements Timestamps {
     id: ID!
     name: String!
-    destinationTypes: [DestinationType]!
+    type: [DestinationType]
     excursions: [Excursion]
     tours: [Tour]
     country: Country
+    image: String
 
     # Interface required
     createdAt: Date!
@@ -15,7 +16,11 @@ type Destination implements Timestamps {
 # Inputs
 input DestinationCreateInput {
     name: String!
-    country: ID!
+    type: [DestinationTypeCreateInput]
+    excursions: [ID]
+    tours: [ID]
+    country: ID
+    image: String
 }
 
 input DestinationUpdateInput {

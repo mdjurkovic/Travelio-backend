@@ -1,24 +1,31 @@
-import {Country} from "../../../db/models";
+import { Country } from "../../../db/models";
 
 const countryMutations = {
-    createCountry: async (_, {country}, {loaders}) => {
-        const newCountry = new Country(country);
+  createCountry: async (_, name, { loaders }) => {
+    const newCountry = new Country(name);
 
-        const savedCountry = await newCountry.save();
+    const savedCountry = await newCountry.save();
 
-        return loaders.country.one(savedCountry._id);
-    },
-    updateCountry: async (_, {id, country}, {loaders}) => {
-        await Country.findByIdAndUpdate(
-            id,
-            {
-                $set: {...country},
-            },
-            {new: true}
-        );
+    return loaders.country.one(savedCountry._id);
+  },
 
-        return loaders.country.one(id);
-    }
+  updateCountry: async (_, { id, active }, { loaders }) => {
+    await Country.findByIdAndUpdate(
+      id,
+      {
+        active: active,
+      },
+      { new: true }
+    );
+
+    return loaders.country.one(id);
+  },
+
+  deleteCountry: async (_, { id }, { loaders }) => {
+    await Country.findByIdAndRemove(id);
+
+    return loaders.country.one(id);
+  },
 };
 
 export default countryMutations;

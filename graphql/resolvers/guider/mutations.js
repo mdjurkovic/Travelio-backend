@@ -1,24 +1,31 @@
-import {Guider} from "../../../db/models";
+import { Guider } from "../../../db/models";
 
 const guiderMutations = {
-    createGuider: async (_, {guider}, {loaders}) => {
-        const newGuider = new Guider(guider);
+  createGuider: async (_, name, { loaders }) => {
+    const newGuider = new Guider(name);
 
-        const savedGuider = await newGuider.save();
+    const savedGuider = await newGuider.save();
 
-        return loaders.guider.one(savedGuider.id)
-    },
-    updateGuider: async (_, {id, guider}, {loaders}) => {
-        await Guider.findByIdAndUpdate(
-            id,
-            {
-                $set: {...guider},
-            },
-            {new: true} //get the new version of record after update - default returns old value
-        );
+    return loaders.guider.one(savedGuider.id);
+  },
+  updateGuider: async (_, { id, guider }, { loaders }) => {
+    await Guider.findByIdAndUpdate(
+      id,
+      {
+        name: guider,
+      },
+      // get the new version of record after update
+      // default returns old value
+      { new: true }
+    );
 
-        return loaders.guider.one(id)
-    },
+    return loaders.guider.one(id);
+  },
+  deleteGuider: async (_, { id }, { loaders }) => {
+    await Guider.findByIdAndRemove(id);
+
+    return loaders.guider.one(id);
+  },
 };
 
 export default guiderMutations;

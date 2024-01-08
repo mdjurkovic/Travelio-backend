@@ -1,12 +1,12 @@
-import {Tour} from "../../../db/models";
+import { Tour } from "../../../db/models";
 
 const tourQueries = {
-    tours: async (_, args, {loaders}) => {
-        const tours = await Tour.find();
+  tours: async (_, args, { loaders }) => {
+    const tours = await Tour.find(args);
 
-        return loaders.tour.many(tours.map(({id}) => id))
-    },
-    tour: async (_, {id}, {loaders}) => await loaders.tour.one(id),
+    return loaders.tour.many(tours.map(({ id }) => id));
+  },
+  tour: async (_, { id }, { loaders }) => await loaders.tour.one(id),
 };
 
 export default tourQueries;

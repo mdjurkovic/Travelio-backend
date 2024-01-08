@@ -2,8 +2,8 @@
 type Country implements Timestamps {
     id: ID!
     name: String!
-    active: Boolean!
-    continent: Continent!
+    active: Boolean
+    continent: String
     destinations: [Destination]
 
     # Interface required
@@ -13,9 +13,10 @@ type Country implements Timestamps {
 
 # Inputs
 input CountryCreateInput {
-    name: String!
+    name: String
 }
 
 input CountryUpdateInput {
-    name: String
+    id: ID!
+    active: Boolean!
 }

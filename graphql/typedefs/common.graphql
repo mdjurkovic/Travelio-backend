@@ -1,5 +1,12 @@
 # Interface
 interface Timestamps {
-  createdAt: Date!
-  updatedAt: Date!
+    createdAt: Date!
+    updatedAt: Date!
+}
+
+interface File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+    path: String!
 }
