@@ -5,6 +5,7 @@ type Guider implements Timestamps {
     preferences: [DestinationType]
     tours: [Tour]
     toursCount: Int
+    active: Boolean
 
     # Interface required
     createdAt: Date!

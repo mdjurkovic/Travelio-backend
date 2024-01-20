@@ -5,7 +5,7 @@ type Destination implements Timestamps {
     type: [DestinationType]
     excursions: [Excursion]
     tours: [Tour]
-    country: Country
+    country: Country!
     image: String
 
     # Interface required
@@ -19,7 +19,7 @@ input DestinationCreateInput {
     type: [DestinationTypeCreateInput]
     excursions: [ID]
     tours: [ID]
-    country: ID
+    country: ID!
     image: String
 }
 

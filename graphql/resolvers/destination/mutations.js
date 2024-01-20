@@ -21,7 +21,9 @@ const destinationMutations = {
     return loaders.destination.one(id);
   },
   deleteDestination: async (_, { id }, { loaders }) => {
-    await Destination.findByIdAndRemove(id);
+    await Destination.findByIdAndUpdate(id, {
+      active: false,
+    });
 
     return loaders.destination.one(id);
   },

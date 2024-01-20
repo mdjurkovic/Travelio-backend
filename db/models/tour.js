@@ -9,14 +9,15 @@ const TourSchema = new Schema(
     departureDate: { type: Date, required: true },
     returnDate: { type: Date, required: true },
     nights: { type: Number },
-    guider: { type: Schema.Types.ObjectId, ref: "Guider" },
+    guider: { type: Schema.Types.ObjectId, ref: "Guider", default: null },
     destination: {
       type: Schema.Types.ObjectId,
       ref: "Destination",
     },
     maxPassengers: { type: Number, required: true },
     minPassengers: { type: Number, required: true },
-    image: { type: String },
+    image: { type: String, default: "Default.jpeg" },
+    passengers: { type: [String] },
   },
   {
     timestamps: true,
