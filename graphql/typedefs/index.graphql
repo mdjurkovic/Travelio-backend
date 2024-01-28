@@ -5,8 +5,8 @@ scalar Upload
 type Query {
 
     # Continent
-    continents(active:Boolean): [Continent]!
-    continent(id:ID!): Continent
+    continents(active: Boolean): [Continent]!
+    continent(id: ID!): Continent
 
     # Country
     countries(active: Boolean): [Country]!
@@ -33,7 +33,7 @@ type Query {
     passenger(id: ID!): Passenger
 
     # Tour
-    tours(destinationId: ID): [Tour]!
+    tours(destination: ID): [Tour]!
     tour(id: ID!): Tour
 
 }
