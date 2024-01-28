@@ -2,7 +2,6 @@ import { Tour } from "../../../db/models";
 
 const tourQueries = {
   tours: async (_, args, { loaders }) => {
-    console.log(args);
     const tours = await Tour.find(args);
 
     const currentDate = new Date();
