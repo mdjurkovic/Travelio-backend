@@ -354,6 +354,7 @@ const seed = async () => {
       name: "Tenerife",
       country: CountriesMap.get("Spain"),
       type: [DestinationTypes[1], DestinationTypes[2], DestinationTypes[4]],
+      image: "Tenerife.jpg",
     }),
   ];
 

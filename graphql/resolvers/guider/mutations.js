@@ -22,7 +22,9 @@ const guiderMutations = {
     return loaders.guider.one(id);
   },
   deleteGuider: async (_, { id }, { loaders }) => {
-    await Guider.findByIdAndRemove(id);
+    await Guider.findByIdAndUpdate(id, {
+      active: false,
+    });
 
     return loaders.guider.one(id);
   },

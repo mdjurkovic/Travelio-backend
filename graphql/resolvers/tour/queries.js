@@ -4,7 +4,24 @@ const tourQueries = {
   tours: async (_, args, { loaders }) => {
     const tours = await Tour.find(args);
 
-    return loaders.tour.many(tours.map(({ id }) => id));
+    const currentDate = new Date();
+
+    const { completed, future } = tours.reduce(
+      (result, tour) => {
+        tour.departureDate > currentDate
+          ? result.future.push(tour)
+          : result.completed.push(tour);
+        return result;
+      },
+      { completed: [], future: [] }
+    );
+
+    future.sort((a, b) => a.departureDate - b.departureDate);
+    completed.sort((a, b) => b.departureDate - a.departureDate);
+
+    const sortedTours = [...future, ...completed];
+
+    return loaders.tour.many(sortedTours.map(({ id }) => id));
   },
   tour: async (_, { id }, { loaders }) => await loaders.tour.one(id),
 };

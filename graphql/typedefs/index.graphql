@@ -5,15 +5,15 @@ scalar Upload
 type Query {
 
     # Continent
-    continents(active:Boolean): [Continent]!
-    continent(id:ID!): Continent
+    continents(active: Boolean): [Continent]!
+    continent(id: ID!): Continent
 
     # Country
     countries(active: Boolean): [Country]!
     country(id: ID!): Country
 
     # Destination
-    destinations: [Destination]!
+    destinations(id: ID): [Destination]!
     destination(id: ID!): Destination
 
     # DestinationType
@@ -33,7 +33,7 @@ type Query {
     passenger(id: ID!): Passenger
 
     # Tour
-    tours(destinationId: ID): [Tour]!
+    tours(destination: ID): [Tour]!
     tour(id: ID!): Tour
 
 }
@@ -51,7 +51,7 @@ type Mutation {
 
     # Destinations
     createDestination(destination: DestinationCreateInput): Destination!
-    updateDestination(id: ID!, destination: DestinationUpdateInput!): Destination!
+    updateDestination(id: ID!, active: Boolean): Destination!
     deleteDestination(id: ID!): Destination
     addDestinationTypeToDestination(id: ID!, destinationType: ID!): Destination!
 
