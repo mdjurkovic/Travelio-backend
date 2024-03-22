@@ -2,18 +2,17 @@ import { Destination } from "../../../db/models";
 
 const destinationMutations = {
   createDestination: async (_, { destination }, { loaders }) => {
-    console.log(destination);
     const newDestination = new Destination(destination);
 
     const savedDestination = await newDestination.save();
 
     return loaders.destination.one(savedDestination._id);
   },
-  updateDestination: async (_, { id, destination }, { loaders }) => {
+  updateDestination: async (_, { id, active }, { loaders }) => {
     await Destination.findByIdAndUpdate(
       id,
       {
-        $set: { ...destination },
+        active: active,
       },
       { new: true }
     );

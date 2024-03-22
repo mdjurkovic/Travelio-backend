@@ -2,6 +2,7 @@
 type Destination implements Timestamps {
     id: ID!
     name: String!
+    active: Boolean!
     type: [DestinationType]
     excursions: [Excursion]
     tours: [Tour]
@@ -25,4 +26,5 @@ input DestinationCreateInput {
 
 input DestinationUpdateInput {
     name: String
+    active: Boolean
 }

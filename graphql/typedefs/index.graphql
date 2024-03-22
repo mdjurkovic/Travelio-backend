@@ -13,7 +13,7 @@ type Query {
     country(id: ID!): Country
 
     # Destination
-    destinations: [Destination]!
+    destinations(id: ID): [Destination]!
     destination(id: ID!): Destination
 
     # DestinationType
@@ -51,7 +51,7 @@ type Mutation {
 
     # Destinations
     createDestination(destination: DestinationCreateInput): Destination!
-    updateDestination(id: ID!, destination: DestinationUpdateInput!): Destination!
+    updateDestination(id: ID!, active: Boolean): Destination!
     deleteDestination(id: ID!): Destination
     addDestinationTypeToDestination(id: ID!, destinationType: ID!): Destination!
 
