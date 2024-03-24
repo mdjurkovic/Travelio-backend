@@ -13,7 +13,7 @@ type Query {
     country(id: ID!): Country
 
     # Destination
-    destinations(id: ID): [Destination]!
+    destinations(id: ID, active: Boolean): [Destination]!
     destination(id: ID!): Destination
 
     # DestinationType
